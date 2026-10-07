@@ -6,47 +6,82 @@
 <title>Mountain Wolves eSports</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   font-family:Arial,sans-serif;
   background:#070b14;
   color:white;
 }
+
 header{
   background:linear-gradient(135deg,#101a35,#090d18);
-  padding:20px;
+  padding:22px 15px;
   text-align:center;
   border-bottom:2px solid #267cff;
 }
+
 .logo{
-  width:80px;height:80px;border-radius:50%;
+  width:85px;
+  height:85px;
+  border-radius:50%;
   background:#172d55;
   border:3px solid #4b9cff;
-  display:flex;align-items:center;justify-content:center;
-  margin:auto;font-size:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-size:42px;
 }
-h1{margin-top:10px;color:#70b5ff}
-.sub{color:#9ba8bd;margin-top:5px}
+
+h1{
+  margin-top:10px;
+  color:#70b5ff;
+}
+
+.sub{
+  color:#9ba8bd;
+  margin-top:5px;
+}
 
 nav{
   display:flex;
-  overflow:auto;
+  overflow-x:auto;
   gap:8px;
   padding:12px;
   background:#0c1220;
 }
+
 nav button{
   min-width:90px;
   padding:11px;
-  border:0;border-radius:10px;
-  background:#151f34;color:white;
+  border:0;
+  border-radius:10px;
+  background:#151f34;
+  color:white;
 }
-nav button.active{background:#247cff}
 
-main{padding:18px;max-width:700px;margin:auto}
-.page{display:none}
-.page.active{display:block}
+nav button.active{
+  background:#247cff;
+}
 
+main{
+  padding:18px;
+  max-width:700px;
+  margin:auto;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}<style>
 .card{
   background:#101827;
   border:1px solid #243653;
@@ -54,8 +89,14 @@ main{padding:18px;max-width:700px;margin:auto}
   padding:18px;
   margin-bottom:15px;
 }
-.card h2{color:#72b7ff;margin-bottom:12px}
-input,select{
+
+.card h2{
+  color:#72b7ff;
+  margin-bottom:12px;
+}
+
+input,
+select{
   width:100%;
   padding:13px;
   margin:7px 0;
@@ -64,6 +105,7 @@ input,select{
   background:#080e19;
   color:white;
 }
+
 button.primary{
   width:100%;
   padding:13px;
@@ -74,6 +116,7 @@ button.primary{
   font-weight:bold;
   margin-top:8px;
 }
+
 button.danger{
   background:#d93652;
   color:white;
@@ -81,6 +124,7 @@ button.danger{
   padding:9px 12px;
   border-radius:8px;
 }
+
 button.green{
   background:#18a566;
   color:white;
@@ -88,104 +132,787 @@ button.green{
   padding:9px 12px;
   border-radius:8px;
 }
+
 .player{
   background:#0b1322;
   padding:13px;
   border-radius:10px;
   margin:8px 0;
-  border-left:3px solid #<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mountain Wolves eSports</title>
+  border-left:3px solid #267cff;
+}
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,sans-serif;
-  background:#070b14;
-  color:white;
+.player strong{
+  color:#70b5ff;
 }
-header{
-  background:linear-gradient(135deg,#101a35,#090d18);
-  padding:20px;
-  text-align:center;
-  border-bottom:2px solid #267cff;
-}
-.logo{
-  width:80px;height:80px;border-radius:50%;
-  background:#172d55;
-  border:3px solid #4b9cff;
-  display:flex;align-items:center;justify-content:center;
-  margin:auto;font-size:40px;
-}
-h1{margin-top:10px;color:#70b5ff}
-.sub{color:#9ba8bd;margin-top:5px}
 
-nav{
+.match{
+  background:#0b1322;
+  padding:14px;
+  border-radius:10px;
+  margin:8px 0;
+  border-left:3px solid #18a566;
+}
+
+.request{
+  background:#0b1322;
+  padding:14px;
+  border-radius:10px;
+  margin:8px 0;
+  border-left:3px solid #ffb020;
+}
+
+.actions{
   display:flex;
-  overflow:auto;
   gap:8px;
-  padding:12px;
-  background:#0c1220;
+  margin-top:10px;
 }
-nav button{
-  min-width:90px;
-  padding:11px;
-  border:0;border-radius:10px;
-  background:#151f34;color:white;
-}
-nav button.active{background:#247cff}
 
-main{padding:18px;max-width:700px;margin:auto}
-.page{display:none}
-.page.active{display:block}
+.actions button{
+  flex:1;
+}
 
-.card{
-  background:#101827;
-  border:1px solid #243653;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:15px;
-}
-.card h2{color:#72b7ff;margin-bottom:12px}
-input,select{
-  width:100%;
-  padding:13px;
-  margin:7px 0;
-  border-radius:9px;
-  border:1px solid #334866;
-  background:#080e19;
-  color:white;
-}
-button.primary{
-  width:100%;
-  padding:13px;
-  border:0;
-  border-radius:10px;
-  background:#267cff;
-  color:white;
-  font-weight:bold;
-  margin-top:8px;
-}
-button.danger{
-  background:#d93652;
-  color:white;
-  border:0;
-  padding:9px 12px;
+.status{
+  display:inline-block;
+  padding:5px 9px;
   border-radius:8px;
+  font-size:12px;
+  background:#243653;
+  color:#9fc8ff;
 }
-button.green{
-  background:#18a566;
-  color:white;
-  border:0;
-  padding:9px 12px;
-  border-radius:8px;
+
+.small{
+  color:#9ba8bd;
+  font-size:14px;
+  margin-top:5px;
 }
-.player{
-  background:#0b1322;
-  padding:13px;
-  border-radius:10px;
-  margin:8px 0;
-  border-left:3px solid #
+
+.empty{
+  color:#7f8da3;
+  text-align:center;
+  padding:20px 5px;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#68758b;
+  font-size:13px;
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head><body>
+
+<header>
+  <div class="logo">🐺</div>
+  <h1>Mountain Wolves eSports</h1>
+  <p class="sub">Official Team Website</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showPage('home',this)">Home</button>
+  <button onclick="showPage('join',this)">Join Team</button>
+  <button onclick="showPage('team',this)">Team</button>
+  <button onclick="showPage('matches',this)">Matches</button>
+  <button onclick="showPage('admin',this)">Admin</button>
+</nav>
+
+<main>
+
+<section id="home" class="page active">
+
+  <div class="card">
+    <h2>🐺 Welcome</h2>
+    <p>Welcome to <b>Mountain Wolves eSports</b>.</p>
+    <p class="small">
+      Join our team, check the roster and view upcoming matches.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>📢 Announcement</h2>
+    <p id="announcement">No announcement yet.</p>
+  </div>
+
+  <div class="card">
+    <h2>⚡ Team Status</h2>
+    <p><span class="status">ACTIVE</span></p>
+    <p class="small">
+      Mountain Wolves eSports official team portal.
+    </p>
+  </div>
+
+</section>
+
+<section id="join" class="page">
+
+  <div class="card">
+    <h2>🎮 Join Mountain Wolves</h2>
+
+    <input id="playerName" type="text" placeholder="Player Name">
+
+    <input id="playerUID" type="text" placeholder="Player UID">
+
+    <select id="playerRole">
+      <option value="">Select Role</option>
+      <option value="Rusher">Rusher</option>
+      <option value="Support">Support</option>
+      <option value="Sniper">Sniper</option>
+      <option value="IGL">IGL</option>
+      <option value="All Rounder">All Rounder</option>
+    </select><section id="team" class="page">
+
+  <div class="card">
+    <h2>👥 Official Team</h2>
+    <div id="teamList"></div>
+  </div>
+
+</section>
+
+
+<section id="matches" class="page">
+
+  <div class="card">
+    <h2>🏆 Matches</h2>
+    <div id="matchList"></div>
+  </div>
+
+</section>
+
+
+<section id="admin" class="page">
+
+  <div id="adminLogin" class="card">
+
+    <h2>🔐 Owner Control Panel</h2>
+
+    <input
+      id="adminUsername"
+      type="text"
+      placeholder="Owner Username"
+    >
+
+    <input
+      id="adminPassword"
+      type="password"
+      placeholder="Owner Password"
+    >
+
+    <button class="primary" onclick="adminLogin()">
+      Login
+    </button>
+
+    <p id="loginMessage" class="small"></p>
+
+  </div>
+
+
+  <div id="adminPanel" class="hidden">
+
+    <div class="card">
+
+      <h2>👑 Owner Dashboard</h2>
+
+      <p class="small">
+        You are logged in as team owner.
+      </p>
+
+      <button class="danger" onclick="adminLogout()">
+        Logout
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>📥 Join Requests</h2>
+
+      <div id="requestList"></div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>➕ Add Match</h2>
+
+      <input
+        id="matchTitle"
+        type="text"
+        placeholder="Match / Tournament Name"
+      >
+
+      <input
+        id="matchDate"
+        type="text"
+        placeholder="Date & Time"
+      >
+
+      <button class="primary" onclick="addMatch()">
+        Add Match
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>📢 Announcement</h2>
+
+      <input
+        id="announcementInput"
+        type="text"
+        placeholder="Write announcement"
+      >
+
+      <button class="primary" onclick="saveAnnouncement()">
+        Save Announcement
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  Mountain Wolves eSports © 2026
+</footer><script>
+
+let requests =
+  JSON.parse(localStorage.getItem("mw_requests")) || [];
+
+let players =
+  JSON.parse(localStorage.getItem("mw_players")) || [];
+
+let matches =
+  JSON.parse(localStorage.getItem("mw_matches")) || [];
+
+let announcement =
+  localStorage.getItem("mw_announcement") ||
+  "No announcement yet.";
+
+let isAdmin = false;
+
+
+/* PAGE NAVIGATION */
+
+function showPage(pageId, button){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+      page.classList.remove("active");
+    });
+
+  document
+    .getElementById(pageId)
+    .classList.add("active");
+
+  document
+    .querySelectorAll("nav button")
+    .forEach(function(btn){
+      btn.classList.remove("active");
+    });
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  renderAll();
+}
+
+
+/* JOIN TEAM */
+
+function joinTeam(){
+
+  let name =
+    document.getElementById("playerName").value.trim();
+
+  let uid =
+    document.getElementById("playerUID").value.trim();
+
+  let role =
+    document.getElementById("playerRole").value;
+
+  let game =
+    document.getElementById("playerGame").value.trim();
+
+  let message =
+    document.getElementById("joinMessage");
+
+  if(!name || !uid || !role || !game){
+
+    message.textContent =
+      "Please fill all details.";
+
+    return;
+  }
+
+  let already =
+    requests.some(function(player){
+      return player.uid === uid;
+    });
+
+  let alreadyPlayer =
+    players.some(function(player){
+      return player.uid === uid;
+    });
+
+  if(already || alreadyPlayer){
+
+    message.textContent =
+      "This UID already has a request or is already in the team.";
+
+    return;
+  }
+
+  requests.push({
+
+    id: Date.now(),
+    name: name,
+    uid: uid,
+    role: role,
+    game: game
+
+  });
+
+  localStorage.setItem(
+    "mw_requests",
+    JSON.stringify(requests)
+  );
+
+  message.textContent =
+    "✅ Join request sent to the Owner.";
+
+  document.getElementById("playerName").value = "";
+  document.getElementById("playerUID").value = "";
+  document.getElementById("playerRole").value = "";
+}/* ADMIN LOGIN */
+
+function adminLogin(){
+
+  let username =
+    document.getElementById("adminUsername").value;
+
+  let password =
+    document.getElementById("adminPassword").value;
+
+  let message =
+    document.getElementById("loginMessage");
+
+  if(
+    username === "admin" &&
+    password === "wolves123"
+  ){
+
+    isAdmin = true;
+
+    document
+      .getElementById("adminLogin")
+      .classList.add("hidden");
+
+    document
+      .getElementById("adminPanel")
+      .classList.remove("hidden");
+
+    message.textContent = "";
+
+    renderAll();
+
+  }else{
+
+    message.textContent =
+      "❌ Wrong username or password.";
+
+  }
+
+}
+
+
+/* ADMIN LOGOUT */
+
+function adminLogout(){
+
+  isAdmin = false;
+
+  document
+    .getElementById("adminLogin")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("adminPanel")
+    .classList.add("hidden");
+
+}
+
+
+/* APPROVE PLAYER */
+
+function approvePlayer(id){
+
+  if(players.length >= 5){
+
+    alert("Team already has 5 players.");
+
+    return;
+  }
+
+  let index =
+    requests.findIndex(function(player){
+      return player.id === id;
+    });
+
+  if(index === -1){
+    return;
+  }
+
+  let player =
+    requests[index];
+
+  players.push(player);
+
+  requests.splice(index,1);
+
+  localStorage.setItem(
+    "mw_players",
+    JSON.stringify(players)
+  );
+
+  localStorage.setItem(
+    "mw_requests",
+    JSON.stringify(requests)
+  );
+
+  renderAll();
+
+}
+
+
+/* REJECT PLAYER */
+
+function rejectPlayer(id){
+
+  requests =
+    requests.filter(function(player){
+      return player.id !== id;
+    });
+
+  localStorage.setItem(
+    "mw_requests",
+    JSON.stringify(requests)
+  );
+
+  renderAll();
+
+}
+
+
+/* REMOVE PLAYER */
+
+function removePlayer(id){
+
+  players =
+    players.filter(function(player){
+      return player.id !== id;
+    });
+
+  localStorage.setItem(
+    "mw_players",
+    JSON.stringify(players)
+  );
+
+  renderAll();
+
+}/* ADD MATCH */
+
+function addMatch(){
+
+  let title =
+    document.getElementById("matchTitle").value.trim();
+
+  let date =
+    document.getElementById("matchDate").value.trim();
+
+  if(!title || !date){
+
+    alert("Enter match name and date.");
+
+    return;
+  }
+
+  matches.push({
+
+    id: Date.now(),
+    title: title,
+    date: date
+
+  });
+
+  localStorage.setItem(
+    "mw_matches",
+    JSON.stringify(matches)
+  );
+
+  document.getElementById("matchTitle").value = "";
+  document.getElementById("matchDate").value = "";
+
+  renderAll();
+
+}
+
+
+/* DELETE MATCH */
+
+function deleteMatch(id){
+
+  matches =
+    matches.filter(function(match){
+      return match.id !== id;
+    });
+
+  localStorage.setItem(
+    "mw_matches",
+    JSON.stringify(matches)
+  );
+
+  renderAll();
+
+}
+
+
+/* ANNOUNCEMENT */
+
+function saveAnnouncement(){
+
+  let value =
+    document
+      .getElementById("announcementInput")
+      .value
+      .trim();
+
+  if(!value){
+
+    alert("Write an announcement.");
+
+    return;
+  }
+/* RENDER TEAM */
+
+function renderTeam(){
+
+  let container =
+    document.getElementById("teamList");
+
+  if(players.length === 0){
+
+    container.innerHTML =
+      '<div class="empty">No approved players yet.</div>';
+
+    return;
+  }
+
+  container.innerHTML =
+    players.map(function(player){
+
+      return `
+        <div class="player">
+
+          <strong>${escapeHTML(player.name)}</strong>
+
+          <div class="small">
+            UID: ${escapeHTML(player.uid)}
+          </div>
+
+          <div class="small">
+            Role: ${escapeHTML(player.role)}
+          </div>
+
+          <div class="small">
+            Game: ${escapeHTML(player.game)}
+          </div>
+
+          ${
+            isAdmin
+            ?
+            `<button
+              class="danger"
+              style="margin-top:10px"
+              onclick="removePlayer(${player.id})">
+              Remove
+            </button>`
+            :
+            ""
+          }
+
+        </div>
+      `;
+
+    }).join("");
+
+}
+
+
+/* RENDER REQUESTS */
+
+function renderRequests(){
+
+  let container =
+    document.getElementById("requestList");
+
+  if(requests.length === 0){
+
+    container.innerHTML =
+      '<div class="empty">No pending requests.</div>';
+
+    return;
+  }
+
+  container.innerHTML =
+    requests.map(function(player){
+
+      return `
+        <div class="request">
+
+          <strong>${escapeHTML(player.name)}</strong>
+
+          <div class="small">
+            UID: ${escapeHTML(player.uid)}
+          </div>
+
+          <div class="small">
+            Role: ${escapeHTML(player.role)}
+          </div>
+
+          <div class="small">
+            Game: ${escapeHTML(player.game)}
+          </div>
+
+          <div class="actions">
+
+            <button
+              class="green"
+              onclick="approvePlayer(${player.id})">
+              Agree
+            </button>
+
+            <button
+              class="danger"
+              onclick="rejectPlayer(${player.id})">
+              Reject
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+}
+
+
+/* RENDER MATCHES */
+
+function renderMatches(){
+
+  let container =
+    document.getElementById("matchList");
+
+  if(matches.length === 0){
+
+    container.innerHTML =
+      '<div class="empty">No matches scheduled.</div>';
+
+    return;
+  }
+
+  container.innerHTML =
+    matches.map(function(match){
+
+      return `
+        <div class="match">
+
+          <strong>
+            ${escapeHTML(match.title)}
+          </strong>
+
+          <div class="small">
+            🗓 ${escapeHTML(match.date)}
+          </div>
+
+          ${
+            isAdmin
+            ?
+            `<button
+              class="danger"
+              style="margin-top:10px"
+              onclick="deleteMatch(${match.id})">
+              Delete
+            </button>`
+            :
+            ""
+          }
+
+        </div>
+      `;
+
+    }).join("");
+
+}
+  announcement = value;
+
+  localStorage.setItem(
+    "mw_announcement",
+    announcement
+  );
+
+  document
+    .getElementById("announcementInput")
+    .value = "";
+
+  renderAll();
+
+}/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* RENDER EVERYTHING */
+
+function renderAll(){
+
+  document
+    .getElementById("announcement")
+    .textContent = announcement;
+
+  renderTeam();
+  renderRequests();
+  renderMatches();
+
+}
+
+
+/* START WEBSITE */
+
+renderAll();
+
+</script>
+
+</body>
+</html>
