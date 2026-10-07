@@ -1,2 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mountain Wolves eSports</title>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
 const SUPABASE_URL = "https://lvtqsrgjzsvjhjchdckq.supabase.co/rest/v1/";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_OdmlzMLmoQjWbeV2BRE34Q_xIiXiPc-";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
+);
+</script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#070b14;
+  color:#ffffff;
+}
+
+header{
+  background:linear-gradient(135deg,#07152b,#0b2d55);
+  padding:18px;
+  border-bottom:1px solid #1d5ea8;
+}
+
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+h1{
+  margin:0;
+  font-size:22px;
+}
+
+.subtitle{
+  color:#9fc9f5;
+  font-size:12px;
+  margin-top:4px;
+}
+
+nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding-top:15px;
+}
+
+nav button{
+  border:1px solid #245b91;
+  background:#0b1729;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+nav button:hover{
+  background:#12345a;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:22px 15px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}.hero{
+  padding:28px 20px;
+  background:linear-gradient(135deg,#0b1729,#102e4d);
+  border-radius:16px;
+  border:1px solid #245b91;
+}
+
+.hero h2{
+  font-size:30px;
+  margin:0 0 10px;
+}
+
+.muted{
+  color:#9eb0c4;
+}
+
+.card{
+  background:#0d1523;
+  border:1px solid #1b3655;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:16px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border-radius:8px;
+  border:1px solid #294764;
+  background:#07101c;
+  color:#fff;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+button.primary{
+  background:#1479e8;
+  border:0;
+  color:white;
+  padding:11px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button.secondary{
+  background:#243447;
+  border:0;
+  color:#fff;
+  padding:9px 13px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+button.danger{
+  background:#b83232;
+  border:0;
+  color:#fff;
+  padding:9px 13px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+button.success{
+  background:#16834a;
+  border:0;
+  color:#fff;
+  padding:9px 13px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:15px;
+}
+
+.player,
+.match,
+.request{
+  background:#09121f;
+  border:1px solid #203c58;
+  border-radius:12px;
+  padding:15px;
+}
+
+.player h3,
+.match h3{
+  margin:0 0 8px;
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:12px;
+  background:#123a61;
+  color:#a9d6ff;
+  margin:3px 3px 3px 0;
+}
+
+.badge.green{
+  background:#10472e;
+  color:#80e0ae;
+}
+
+.badge.yellow{
+  background:#514314;
+  color:#ffe477;
+}
+
+.badge.red{
+  background:#4b1717;
+  color:#ff9b9b;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.notice{
+  padding:12px;
+  border-radius:9px;
+  background:#10233a;
+  border:1px solid #245b91;
+  margin:10px 0;
+}
+
+.error{
+  color:#ff8f8f;
+}
+
+.success-text{
+  color:#76e0a6;
+}
+
+.small{
+  font-size:13px;
+}
+
+.hidden{
+  display:none !important;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #20354b;
+  margin:20px 0;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#71859b;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+
+  .header-inner{
+    align-items:flex-start;
+  }
+
+  .hero h2{
+    font-size:24px;
+  }
+
+  nav button{
+    flex:1;
+    min-width:90px;
+  }
+
+}
+</style>
+</head><body>
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="logo-title">
+      <div>
+        <h1>🐺 Mountain Wolves eSports</h1>
+        <div class="subtitle">
+          Official Team Management System
+        </div>
+      </div>
+    </div>
+
+    <div id="authStatus" class="small muted">
+      Checking...
+    </div>
+
+  </div>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('join')">Join Team</button>
+    <button onclick="showPage('team')">Team</button>
+    <button onclick="showPage('matches')">Matches</button>
+    <button onclick="showPage('admin')">Admin</button>
+  </nav>
+
+</header>
+
+
+<div class="container">
+
+<!-- HOME PAGE -->
+
+<section id="home" class="page active">
+
+  <div class="hero">
+
+    <h2>Mountain Wolves eSports</h2>
+
+    <p class="muted">
+      Official team website for players, matches and team management.
+    </p>
+
+    <div class="actions">
+
+      <button class="primary" onclick="showPage('join')">
+        Join Team
+      </button>
+
+      <button class="secondary" onclick="showPage('team')">
+        View Team
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>📢 Latest Announcement</h2>
+
+    <div id="homeAnnouncement">
+      Login as an active team member to view announcements.
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>🔐 Account</h2>
+
+    <div id="loggedOutBox">
+
+      <p class="muted">
+        Login to access team features.
+      </p>
+
+      <button class="primary" onclick="showPage('admin')">
+        Login / Create Account
+      </button>
+
+    </div>
+
+
+    <div id="loggedInBox" class="hidden">
+
+      <p id="accountInfo"></p>
+
+      <button class="danger" onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</section><!-- JOIN TEAM PAGE -->
+
+<section id="join" class="page">
+
+  <div class="card">
+
+    <h2>🤝 Join Mountain Wolves</h2>
+
+    <div id="joinLoginMessage" class="notice">
+      You must login before sending a join request.
+    </div>
+
+    <div id="joinFormBox" class="hidden">
+
+      <label>Player Name</label>
+
+      <input
+        id="joinPlayerName"
+        placeholder="Your player name"
+      >
+
+
+      <label>Game UID</label>
+
+      <input
+        id="joinGameUid"
+        placeholder="Your game UID"
+      >
+
+
+      <label>Role</label>
+
+      <select id="joinRole">
+
+        <option value="IGL">IGL</option>
+
+        <option value="Rusher">Rusher</option>
+
+        <option value="Assaulter">Assaulter</option>
+
+        <option value="Support">Support</option>
+
+        <option value="Sniper">Sniper</option>
+
+        <option value="Substitute">Substitute</option>
+
+      </select>
+
+
+      <label>Message</label>
+
+      <textarea
+        id="joinMessage"
+        placeholder="Tell the team owner something..."
+      ></textarea>
+
+
+      <button
+        class="primary"
+        onclick="sendJoinRequest()"
+      >
+        Send Join Request
+      </button>
+
+
+      <div id="joinResult"></div>
+
+    </div>
+
+  </div>
+
+</section><!-- TEAM PAGE -->
+
+<section id="team" class="page">
+
+  <div class="card">
+
+    <h2>🐺 Team Roster</h2>
+
+    <div id="teamAccessMessage" class="notice">
+      Loading...
+    </div>
+
+    <div id="teamList" class="grid"></div>
+
+  </div>
+
+</section>
+
+
+<!-- MATCHES PAGE -->
+
+<section id="matches" class="page">
+
+  <div class="card">
+
+    <h2>🎮 Upcoming Matches</h2>
+
+    <div id="matchesAccessMessage" class="notice">
+      Loading...
+    </div>
+
+    <div id="matchesList" class="grid"></div>
+
+  </div>
+
+</section><!-- ADMIN PAGE -->
+
+<section id="admin" class="page">
+
+
+  <!-- LOGIN / SIGNUP -->
+
+  <div id="loginCard" class="card">
+
+    <h2>🔐 Account Login</h2>
+
+    <label>Email</label>
+
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="Email"
+    >
+
+
+    <label>Password</label>
+
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="Password"
+    >
+
+
+    <button class="primary" onclick="login()">
+      Login
+    </button>
+
+    <div id="loginResult"></div>
+
+
+    <hr>
+
+
+    <h3>🆕 New Player?</h3>
+
+    <label>Player Name</label>
+
+    <input
+      id="signupPlayerName"
+      placeholder="Player name"
+    >
+
+
+    <label>Game UID</label>
+
+    <input
+      id="signupGameUid"
+      placeholder="Game UID"
+    >
+
+
+    <label>Role</label>
+
+    <select id="signupRole">
+
+      <option value="IGL">IGL</option>
+
+      <option value="Rusher">Rusher</option>
+
+      <option value="Assaulter">Assaulter</option>
+
+      <option value="Support">Support</option>
+
+      <option value="Sniper">Sniper</option>
+
+      <option value="Substitute">Substitute</option>
+
+    </select>
+
+
+    <label>Email</label>
+
+    <input
+      id="signupEmail"
+      type="email"
+      placeholder="Email"
+    >
+
+
+    <label>Password</label>
+
+    <input
+      id="signupPassword"
+      type="password"
+      placeholder="Password"
+    >
+
+
+    <button
+      class="secondary"
+      onclick="signup()"
+    >
+      Create Player Account
+    </button>
+
+    <div id="signupResult"></div>
+
+  </div>
+
+
+
+  <!-- MY ACCOUNT -->
+
+  <div id="accountCard" class="card hidden">
+
+    <h2>👤 My Account</h2>
+
+    <div id="myProfile"></div>
+
+    <div id="myRequestStatus"></div>
+
+    <div class="actions">
+
+      <button
+        class="danger"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- OWNER CONTROL PANEL -->
+
+  <div id="ownerPanel" class="hidden">
+
+
+    <div class="card">
+
+      <h2>👑 Owner Control Panel</h2>
+
+      <p class="muted">
+        Only the Mountain Wolves owner account can use
+        these controls.
+      </p>
+
+    </div>
+
+
+
+    <!-- JOIN REQUESTS -->
+
+    <div class="card">
+
+      <h2>📥 Join Requests</h2>
+
+      <div id="ownerRequests">
+        Loading...
+      </div>
+
+    </div>
+
+
+
+    <!-- PLAYER MANAGEMENT -->
+
+    <div class="card">
+
+      <h2>👥 Player Management</h2>
+
+      <div
+        id="ownerPlayers"
+        class="grid"
+      >
+        Loading...
+      </div>
+
+    </div>
+
+
+
+    <!-- ADD MATCH -->
+
+    <div class="card">
+
+      <h2>🎮 Add Match</h2>
+
+
+      <label>Match Title</label>
+
+      <input
+        id="matchTitle"
+        placeholder="Tournament Match"
+      >
+
+
+      <label>Opponent</label>
+
+      <input
+        id="matchOpponent"
+        placeholder="Opponent team"
+      >
+
+
+      <label>Date & Time</label>
+
+      <input
+        id="matchDate"
+        type="datetime-local"
+      >
+
+
+      <label>Status</label>
+
+      <select id="matchStatus">
+
+        <option value="upcoming">
+          Upcoming
+        </option>
+
+        <option value="live">
+          Live
+        </option>
+
+        <option value="completed">
+          Completed
+        </option>
+
+        <option value="cancelled">
+          Cancelled
+        </option>
+
+      </select>
+
+
+      <label>Notes</label>
+
+      <textarea
+        id="matchNotes"
+        placeholder="Match notes"
+      ></textarea>
+
+
+      <button
+        class="primary"
+        onclick="addMatch()"
+      >
+        Add Match
+      </button>
+
+      <div id="matchResult"></div>
+
+    </div>
+
+
+
+    <!-- ANNOUNCEMENT -->
+
+    <div class="card">
+
+      <h2>📢 New Announcement</h2>
+
+
+      <label>Title</label>
+
+      <input
+        id="announcementTitle"
+        placeholder="Announcement title"
+      >
+
+
+      <label>Message</label>
+
+      <textarea
+        id="announcementMessage"
+        placeholder="Write announcement..."
+      ></textarea>
+
+
+      <button
+        class="primary"
+        onclick="addAnnouncement()"
+      >
+        Publish Announcement
+      </button>
+
+      <div id="announcementResult"></div>
+
+    </div>
+
+
+
+    <!-- TEAM SETTINGS -->
+
+    <div class="card">
+
+      <h2>⚙️ Team Settings</h2>
+
+
+      <label>Team Name</label>
+
+      <input id="teamNameSetting">
+
+
+      <label>Team Status</label>
+
+      <select id="teamStatusSetting">
+
+        <option value="ACTIVE">
+          ACTIVE
+        </option>
+
+        <option value="INACTIVE">
+          INACTIVE
+        </option>
+
+      </select>
+
+
+      <label>Maximum Players</label>
+
+      <input
+        id="maxPlayersSetting"
+        type="number"
+        min="1"
+        max="20"
+      >
+
+
+      <button
+        class="primary"
+        onclick="saveTeamSettings()"
+      >
+        Save Team Settings
+      </button>
+
+      <div id="settingsResult"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  Mountain Wolves eSports © 2026
+</footer><script>
+
+/* ==========================================
+   GLOBAL VARIABLES
+========================================== */
+
+let currentUser = null;
+let currentProfile = null;
+
+
+/* ==========================================
+   PAGE NAVIGATION
+========================================== */
+
+function showPage(pageId){
+
+  document.querySelectorAll(".page").forEach(function(page){
+
+    page.classList.remove("active");
+
+  });
+
+
+  const selectedPage =
+    document.getElementById(pageId);
+
+
+  if(selectedPage){
+
+    selectedPage.classList.add("active");
+
+  }
+
+
+  if(pageId === "team"){
+
+    loadTeam();
+
+  }
+
+
+  if(pageId === "matches"){
+
+    loadMatches();
+
+  }
+
+
+  if(pageId === "home"){
+
+    loadHomeAnnouncement();
+
+  }
+
+}
+
+
+/* ==========================================
+   INITIAL AUTH CHECK
+========================================== */
+
+async function init(){
+
+  const result =
+    await supabaseClient.auth.getSession();
+
+
+  currentUser =
+    result.data.session
+    ? result.data.session.user
+    : null;
+
+
+  if(currentUser){
+
+    await loadProfile();
+
+  }else{
+
+    updateLoggedOutUI();
+
+  }
+
+
+  await refreshPublicUI();
+
+}
+
+
+/* ==========================================
+   AUTH STATE LISTENER
+========================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  async function(event,session){
+
+    currentUser =
+      session
+      ? session.user
+      : null;
+
+
+    if(currentUser){
+
+      setTimeout(async function(){
+
+        await loadProfile();
+
+        await refreshPublicUI();
+
+      },0);
+
+
+    }else{
+
+      currentProfile = null;
+
+      updateLoggedOutUI();
+
+      await refreshPublicUI();
+
+    }
+
+  }
+);
+
+
+/* ==========================================
+   PLAYER SIGNUP
+========================================== */
+
+async function signup(){
+
+  const playerName =
+    document
+      .getElementById("signupPlayerName")
+      .value
+      .trim();
+
+
+  const gameUid =
+    document
+      .getElementById("signupGameUid")
+      .value
+      .trim();
+
+
+  const role =
+    document
+      .getElementById("signupRole")
+      .value;
+
+
+  const email =
+    document
+      .getElementById("signupEmail")
+      .value
+      .trim();
+
+
+  const password =
+    document
+      .getElementById("signupPassword")
+      .value;
+
+
+  const result =
+    document.getElementById("signupResult");
+
+
+  result.innerHTML = "";
+
+
+  if(
+    !playerName ||
+    !gameUid ||
+    !email ||
+    !password
+  ){
+
+    result.innerHTML =
+      `<p class="error">
+        Please fill all required fields.
+      </p>`;
+
+    return;
+
+  }
+
+
+  if(password.length < 6){
+
+    result.innerHTML =
+      `<p class="error">
+        Password must be at least 6 characters.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const signupResult =
+    await supabaseClient.auth.signUp({
+
+      email:email,
+
+      password:password,
+
+      options:{
+        data:{
+          player_name:playerName,
+          game_uid:gameUid,
+          role:role
+        }
+      }
+
+    });
+
+
+  if(signupResult.error){
+
+    result.innerHTML =
+      `<p class="error">
+        ${escapeHTML(signupResult.error.message)}
+      </p>`;
+
+    return;
+
+  }
+
+
+  if(signupResult.data.session){
+
+    result.innerHTML =
+      `<p class="success-text">
+        Account created successfully.
+      </p>`;
+
+
+  }else{
+
+    result.innerHTML =
+      `<p class="success-text">
+        Account created. Check your email and confirm
+        your account before login.
+      </p>`;
+
+  }
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+async function login(){
+
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim();
+
+
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
+
+
+  const result =
+    document.getElementById("loginResult");
+
+
+  result.innerHTML = "";
+
+
+  if(!email || !password){
+
+    result.innerHTML =
+      `<p class="error">
+        Enter email and password.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const loginResult =
+    await supabaseClient.auth.signInWithPassword({
+
+      email:email,
+
+      password:password
+
+    });
+
+
+  if(loginResult.error){
+
+    result.innerHTML =
+      `<p class="error">
+        ${escapeHTML(loginResult.error.message)}
+      </p>`;
+
+    return;
+
+  }
+
+
+  currentUser =
+    loginResult.data.user;
+
+
+  await loadProfile();
+
+
+  result.innerHTML =
+    `<p class="success-text">
+      Login successful.
+    </p>`;
+
+
+  await refreshPublicUI();
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+
+  currentUser = null;
+
+  currentProfile = null;
+
+
+  showPage("home");
+
+
+  await refreshPublicUI();
+
+}
+
+
+/* ==========================================
+   LOAD PLAYER PROFILE
+========================================== */
+
+async function loadProfile(){
+
+  if(!currentUser){
+
+    currentProfile = null;
+
+    return;
+
+  }
+
+
+  const result =
+    await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("id",currentUser.id)
+      .single();
+
+
+  if(result.error){
+
+    console.error(result.error);
+
+    currentProfile = null;
+
+    return;
+
+  }
+
+
+  currentProfile =
+    result.data;
+
+
+  updateAccountUI();
+
+
+  if(
+    currentProfile.role === "owner"
+  ){
+
+    await loadOwnerPanel();
+
+  }
+
+} 
+/* ==========================================
+   ACCOUNT UI
+========================================== */
+
+function updateAccountUI(){
+
+  const loginCard =
+    document.getElementById("loginCard");
+
+  const accountCard =
+    document.getElementById("accountCard");
+
+  const ownerPanel =
+    document.getElementById("ownerPanel");
+
+
+  if(!currentUser){
+
+    loginCard.classList.remove("hidden");
+
+    accountCard.classList.add("hidden");
+
+    ownerPanel.classList.add("hidden");
+
+    return;
+
+  }
+
+
+  loginCard.classList.add("hidden");
+
+  accountCard.classList.remove("hidden");
+
+
+  if(
+    currentProfile &&
+    currentProfile.role === "owner" &&
+    currentProfile.membership_status === "active"
+  ){
+
+    ownerPanel.classList.remove("hidden");
+
+  }else{
+
+    ownerPanel.classList.add("hidden");
+
+  }
+
+
+  const profileBox =
+    document.getElementById("myProfile");
+
+
+  if(currentProfile){
+
+    profileBox.innerHTML = `
+
+      <div class="notice">
+
+        <b>
+          ${escapeHTML(
+            currentProfile.player_name || "Player"
+          )}
+        </b>
+
+        <br>
+
+        UID:
+        ${escapeHTML(
+          currentProfile.game_uid || "-"
+        )}
+
+        <br>
+
+        Role:
+        ${escapeHTML(
+          currentProfile.role || "-"
+        )}
+
+        <br>
+
+        Status:
+
+        <span class="badge ${
+          currentProfile.membership_status === "active"
+          ? "green"
+          : currentProfile.membership_status === "pending"
+          ? "yellow"
+          : "red"
+        }">
+
+          ${escapeHTML(
+            currentProfile.membership_status || "-"
+          )}
+
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+  loadMyRequestStatus();
+
+}
+
+
+/* ==========================================
+   LOGGED OUT UI
+========================================== */
+
+function updateLoggedOutUI(){
+
+  document
+    .getElementById("loginCard")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("accountCard")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("ownerPanel")
+    .classList.add("hidden");
+
+}
+
+
+/* ==========================================
+   JOIN TEAM REQUEST
+========================================== */
+
+async function sendJoinRequest(){
+
+  if(!currentUser){
+
+    document.getElementById("joinResult").innerHTML =
+
+      `<p class="error">
+        Please login first.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const role =
+    document
+      .getElementById("joinRole")
+      .value;
+
+
+  const message =
+    document
+      .getElementById("joinMessage")
+      .value
+      .trim();
+
+
+  const result =
+    document.getElementById("joinResult");
+
+
+  const existingResult =
+    await supabaseClient
+      .from("join_requests")
+      .select("id,status")
+      .eq("player_id",currentUser.id)
+      .eq("status","pending")
+      .maybeSingle();
+
+
+  if(existingResult.error){
+
+    result.innerHTML =
+      `<p class="error">
+        ${escapeHTML(
+          existingResult.error.message
+        )}
+      </p>`;
+
+    return;
+
+  }
+
+
+  if(existingResult.data){
+
+    result.innerHTML =
+      `<p class="error">
+        You already have a pending request.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const insertResult =
+    await supabaseClient
+      .from("join_requests")
+      .insert({
+
+        player_id:currentUser.id,
+
+        requested_role:role,
+
+        message:message,
+
+        status:"pending"
+
+      });
+
+
+  if(insertResult.error){
+
+    result.innerHTML =
+      `<p class="error">
+        ${escapeHTML(
+          insertResult.error.message
+        )}
+      </p>`;
+
+    return;
+
+  }
+
+
+  result.innerHTML =
+    `<p class="success-text">
+      Join request sent successfully.
+    </p>`;
+
+
+  document
+    .getElementById("joinMessage")
+    .value = "";
+
+
+  await loadMyRequestStatus();
+
+}
+
+
+/* ==========================================
+   MY REQUEST STATUS
+========================================== */
+
+async function loadMyRequestStatus(){
+
+  if(!currentUser){
+
+    document
+      .getElementById("myRequestStatus")
+      .innerHTML = "";
+
+    return;
+
+  }
+
+
+  const result =
+    await supabaseClient
+      .from("join_requests")
+      .select("*")
+      .eq("player_id",currentUser.id)
+      .order("created_at",{ascending:false})
+      .limit(1)
+      .maybeSingle();
+
+
+  if(result.error){
+
+    console.error(result.error);
+
+    return;
+
+  }
+
+
+  const box =
+    document.getElementById("myRequestStatus");
+
+
+  if(!result.data){
+
+    box.innerHTML =
+      `<div class="notice">
+        No join request yet.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML = `
+
+    <div class="notice">
+
+      <b>Join Request:</b>
+
+      <span class="badge ${
+        result.data.status === "approved"
+        ? "green"
+        : result.data.status === "rejected"
+        ? "red"
+        : 
+/* ==========================================
+   OWNER PANEL
+========================================== */
+
+async function loadOwnerPanel(){
+
+  if(!isOwner()) return;
+
+  await loadOwnerRequests();
+
+  await loadOwnerPlayers();
+
+  await loadTeamSettings();
+
+}
+
+
+/* ==========================================
+   OWNER - JOIN REQUESTS
+========================================== */
+
+async function loadOwnerRequests(){
+
+  const box =
+    document.getElementById("ownerRequests");
+
+
+  const result =
+    await supabaseClient
+      .from("join_requests")
+      .select("*")
+      .eq("status","pending")
+      .order("created_at",{ascending:true});
+
+
+  if(result.error){
+
+    box.innerHTML =
+      `<p class="error">
+        ${escapeHTML(result.error.message)}
+      </p>`;
+
+    return;
+
+  }
+
+
+  if(
+    !result.data ||
+    result.data.length === 0
+  ){
+
+    box.innerHTML =
+      `<p class="muted">
+        No pending requests.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const profileResult =
+    await supabaseClient
+      .from("profiles")
+      .select(
+        "id,player_name,game_uid,role,membership_status"
+      );
+
+
+  const profileMap = {};
+
+
+  (profileResult.data || []).forEach(function(player){
+
+    profileMap[player.id] = player;
+
+  });
+
+
+  box.innerHTML = "";
+
+
+  result.data.forEach(function(request){
+
+    const player =
+      profileMap[request.player_id] || {};
+
+
+    const div =
+      document.createElement("div");
+
+
+    div.className = "request";
+
+
+    div.innerHTML = `
+
+      <h3>
+        👤
+        ${escapeHTML(
+          player.player_name || "Player"
+        )}
+      </h3>
+
+      <p>
+        UID:
+        ${escapeHTML(
+          player.game_uid || "-"
+        )}
+      </p>
+
+      <p>
+        Requested Role:
+        <b>
+          ${escapeHTML(
+            request.requested_role || "-"
+          )}
+        </b>
+      </p>
+
+      <p class="muted">
+        ${escapeHTML(
+          request.message || "No message"
+        )}
+      </p>
+
+      <div class="actions">
+
+        <button
+          class="success"
+          onclick="approveRequest(
+            '${request.id}',
+            '${request.player_id}'
+          )"
+        >
+          Approve
+        </button>
+
+        <button
+          class="danger"
+          onclick="rejectRequest(
+            '${request.id}'
+          )"
+        >
+          Reject
+        </button>
+
+      </div>
+
+    `;
+
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* ==========================================
+   APPROVE REQUEST
+========================================== */
+
+async function approveRequest(
+  requestId,
+  playerId
+){
+
+  if(!isOwner()) return;
+
+
+  const settingsResult =
+    await supabaseClient
+      .from("team_settings")
+      .select("max_players")
+      .limit(1)
+      .single();
+
+
+  const maxPlayers =
+    settingsResult.data?.max_players || 5;
+
+
+  const countResult =
+    await supabaseClient
+      .from("profiles")
+      .select(
+        "id",
+        {
+          count:"exact",
+          head:true
+        }
+      )
+      .eq(
+        "membership_status",
+        "active"
+      );
+
+
+  if(countResult.error){
+
+    alert(
+      countResult.error.message
+    );
+
+    return;
+
+  }
+
+
+  if(
+    (countResult.count || 0) >= maxPlayers
+  ){
+
+    alert(
+      "Team is full."
+    );
+
+    return;
+
+  }
+
+
+  const profileUpdate =
+    await supabaseClient
+      .from("profiles")
+      .update({
+        membership_status:"active"
+      })
+      .eq("id",playerId);
+
+
+  if(profileUpdate.error){
+
+    alert(
+      profileUpdate.error.message
+    );
+
+    return;
+
+  }
+
+
+  const requestUpdate =
+    await supabaseClient
+      .from("join_requests")
+      .update({
+        status:"approved"
+      })
+      .eq("id",requestId);
+
+
+  if(requestUpdate.error){
+
+    alert(
+      requestUpdate.error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadOwnerPanel();
+
+}
+
+
+/* ==========================================
+   REJECT REQUEST
+========================================== */
+
+async function rejectRequest(
+  requestId
+){
+
+  if(!isOwner()) return;
+
+
+  const result =
+    await supabaseClient
+      .from("join_requests")
+      .update({
+        status:"rejected"
+      })
+      .eq("id",requestId);
+
+
+  if(result.error){
+
+    alert(
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadOwnerPanel();
+
+}
+
+
+/* ==========================================
+   OWNER - PLAYER MANAGEMENT
+========================================== */
+
+async function loadOwnerPlayers(){
+
+  const box =
+    document.getElementById(
+      "ownerPlayers"
+    );
+
+
+  const result =
+    await supabaseClient
+      .from("profiles")
+      .select("*")
+      .order(
+        "membership_status",
+        {ascending:true}
+      );
+
+
+  if(result.error){
+
+    box.innerHTML =
+      `<p class="error">
+        ${escapeHTML(
+          result.error.message
+        )}
+      </p>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML = "";
+
+
+  if(
+    !result.data ||
+    result.data.length === 0
+  ){
+
+    box.innerHTML =
+      `<p class="muted">
+        No players.
+      </p>`;
+
+    return;
+
+  }
+
+
+  result.data.forEach(function(player){
+
+    const div =
+      document.createElement("div");
+
+
+    div.className = "player";
+
+
+    div.innerHTML = `
+
+      <h3>
+        ${escapeHTML(
+          player.player_name || "Player"
+        )}
+      </h3>
+
+      <p class="small">
+        UID:
+        ${escapeHTML(
+          player.game_uid || "-"
+        )}
+      </p>
+
+      <p class="small">
+        Role:
+        ${escapeHTML(
+          player.role || "-"
+        )}
+      </p>
+
+      <span class="badge ${
+        player.membership_status === "active"
+        ? "green"
+        : player.membership_status === "pending"
+        ? "yellow"
+        : "red"
+      }">
+
+        ${escapeHTML(
+          player.membership_status || "-"
+        )}
+
+      </span>
+
+
+      ${
+        player.role !== "owner"
+        ? `
+          <div class="actions">
+
+            <button
+              class="danger"
+              onclick="removePlayer(
+                '${player.id}'
+              )"
+            >
+              Remove
+            </button>
+
+          </div>
+        `
+        : ""
+      }
+
+    `;
+
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* ==========================================
+   REMOVE PLAYER
+========================================== */
+
+async function removePlayer(
+  playerId
+){
+
+  if(!isOwner()) return;
+
+
+  if(
+    !confirm(
+      "Remove this player from the active team?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const result =
+    await supabaseClient
+      .from("profiles")
+      .update({
+        membership_status:"removed"
+      })
+      .eq("id",playerId);
+
+
+  if(result.error){
+
+    alert(
+      result.error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadOwnerPanel();
+
+}
+
+
+/* ==========================================
+   ADD MATCH
+========================================== */
+
+async function addMatch(){
+
+  if(!isOwner()) return;
+
+
+  const title =
+    document
+      .getElementById("matchTitle")
+      .value
+      .trim();
+
+
+  const opponent =
+    document
+      .getElementById("matchOpponent")
+      .value
+      .trim();
+
+
+  const date =
+    document
+      .getElementById("matchDate")
+      .value;
+
+
+  const status =
+    document
+      .getElementById("matchStatus")
+      .value;
+
+
+  const notes =
+    document
+      .getElementById("matchNotes")
+      .value
+      .trim();
+
+
+  const resultBox =
+    document.getElementById(
+      "matchResult"
+    );
+
+
+  if(!title || !date){
+
+    resultBox.innerHTML =
+      `<p class="error">
+        Match title and date are required.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const result =
+    await supabaseClient
+      .from("
